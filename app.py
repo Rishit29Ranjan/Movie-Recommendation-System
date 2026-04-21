@@ -4,6 +4,9 @@ import pandas as pd
 import requests
 
 
+import gdown
+import os
+
 # '''
 # tmdb api key :  91da3860e425b5eef872b90e259ddc5c
 # add this website url    ?api_key=YOUR_KEY   to the below website link 
@@ -71,7 +74,14 @@ movies_dict = pickle.load(open('movies_dict.pkl','rb'))
 movies = pd.DataFrame( movies_dict)
 
 
-similarity = pickle.load(open('similarity.pkl','rb'))
+# similarity = pickle.load(open('similarity.pkl','rb'))
+file_id = "16caKWUNAXfRDkF8Ir9_0SCdtUdv1cD0p"
+url = f"https://drive.google.com/uc?id={file_id}"
+
+if not os.path.exists("similarity.pkl"):
+    gdown.download(url, "similarity.pkl", quiet=False)
+
+similarity = pickle.load(open("similarity.pkl", "rb"))
 
 
 
